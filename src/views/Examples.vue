@@ -50,12 +50,24 @@
 			<component :is="dynamicComp"></component>
 		</section>
 
+		<section>
+			<h1>Emit/Receive events</h1>
+			<div>
+				<h4>Event received</h4>
+				<h5>{{ EmitCounterTimes }} times</h5>
+			</div>
+			<EmitterComp @emitterHasFired="EmitCountFnc">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dolore earum, eligendi eos excepturi hic labore laborum maxime, molestias necessitatibus odit quo, recusandae repudiandae sequi tempora tempore velit vitae voluptas!</p>
+			</EmitterComp>
+		</section>
+
 	</div>
 </template>
 
 <script>
 import ContentBox from '@/components/ContentBox.vue';
 import ParagBox from '@/components/ParagBox.vue';
+import EmitterComp from '@/components/EmitterComp.vue';
 
 export default {
 	name: 'Examples',
@@ -68,6 +80,7 @@ export default {
 			list: ['orange', 'banana', 'mango', 'pineapple', 'kiwi'],
 			bolly: true,
 			dynamicComp: 'ContentBox',
+			EmitCounterTimes: 0,
 		};
 	},
 	methods: {
@@ -77,10 +90,14 @@ export default {
 		say(msg) {
 			alert(msg);
 		},
+		EmitCountFnc(dataFromEvent) {
+			this.EmitCounterTimes = dataFromEvent;
+		},
 	},
 	components: {
 		ContentBox,
 		ParagBox,
+		EmitterComp,
 	},
 };
 </script>
