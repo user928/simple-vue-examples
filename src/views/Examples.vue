@@ -3,7 +3,7 @@
 
 		<section>
 			<h1>Two way bindings</h1>
-			<input type="text" v-model="inptxt" @keyup.enter="say(inptxt)">
+			<input type="text" v-model="inptxt" @keyup.enter="sayFnc(inptxt)">
 			<p>{{inptxt}}</p>
 		</section>
 
@@ -28,9 +28,9 @@
 
 		<section>
 			<h1>If / Else on click</h1>
-			<h4 v-if="bolly">I see bollyZ</h4>
-			<h4 v-else>No bolly here</h4>
-			<button @click="bolly = !bolly">switcher</button>
+			<h4 v-if="bully">I see bullyZ</h4>
+			<h4 v-else>No bully here</h4>
+			<button @click="bully = !bully">switcher</button>
 		</section>
 
 		<section>
@@ -61,6 +61,11 @@
 			</EmitterComp>
 		</section>
 
+
+		<section>
+			<h1>Props and callback functions</h1>
+			<ParagBox :sayFncParent="sayFnc" myProp="gitara" :myDinamicProp="someTxt"></ParagBox>
+		</section>
 	</div>
 </template>
 
@@ -78,7 +83,7 @@ export default {
 			countNmb: 0,
 			link: 'https://www.google.com',
 			list: ['orange', 'banana', 'mango', 'pineapple', 'kiwi'],
-			bolly: true,
+			bully: true,
 			dynamicComp: 'ContentBox',
 			EmitCounterTimes: 0,
 		};
@@ -87,7 +92,7 @@ export default {
 		counter() {
 			this.countNmb++;
 		},
-		say(msg) {
+		sayFnc(msg) {
 			alert(msg);
 		},
 		EmitCountFnc(dataFromEvent) {
